@@ -25,7 +25,7 @@ export class CardService {
     this.cardProducts.delete(cardId);
   }
 
-  // for testing purposes in real project this will be uuid generation or beckend ids
+  // for testing purposes in real project this will be uuid generation or backend ids
   private generateId() {
     return this.lastId++;
   }
