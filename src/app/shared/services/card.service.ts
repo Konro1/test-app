@@ -18,7 +18,6 @@ export class CardService {
   }
 
   public getCard(): CardProduct[] {
-    console.log(Array.from(this.cardProducts.values()));
     return Array.from(this.cardProducts.values());
   }
 
