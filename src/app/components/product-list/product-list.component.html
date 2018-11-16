@@ -1,0 +1,6 @@
+<mat-list>
+  <div *ngFor="let product of products | async">
+    <mat-list-item (click)="navigateToProduct(product.id)">{{product.name}}</mat-list-item>
+    <mat-divider></mat-divider>
+  </div>
+</mat-list>

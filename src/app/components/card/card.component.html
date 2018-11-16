@@ -1,0 +1,35 @@
+<mat-card *ngFor="let cardProduct of cardProducts">
+  <mat-card-header>
+    <mat-card-title>
+      {{cardProduct.name}}
+      <span>({{cardProduct.count}})</span>
+      <span>$ {{cardProduct.price * cardProduct.count}}</span>
+    </mat-card-title>
+
+  </mat-card-header>
+
+  <mat-card-content>
+    <mat-list>
+      <mat-list-item *ngFor="let option of cardProduct.selectedOptions">
+        {{option.name}}<span>($ {{option.price}})</span>
+      </mat-list-item>
+      <mat-divider></mat-divider>
+      <mat-list-item>
+        Total: $ {{cardProduct.totalPrice}}
+      </mat-list-item>
+    </mat-list>
+  </mat-card-content>
+  <mat-card-actions>
+    <button mat-button color="primary" (click)="navigateTo([''])">Back to list</button>
+    <button mat-button color="primary" (click)="removeFromCard(cardProduct.cardId)">Remove from card</button>
+  </mat-card-actions>
+</mat-card>
+
+<mat-card *ngIf="!cardProducts.length">
+  <mat-card-content>
+    Card is empty
+  </mat-card-content>
+  <mat-card-actions>
+    <button mat-button color="primary" (click)="navigateTo([''])">Back to list</button>
+  </mat-card-actions>
+</mat-card>

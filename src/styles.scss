@@ -1,1 +1,74 @@
 /* You can add global styles to this file, and also import other style files */
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+
+#product-modal {
+  padding: 0;
+  overflow: auto;
+  max-height: 90vh;
+
+  .mat-card-header {
+    display: block;
+    .mat-card-header-text {
+      text-align: center;
+    }
+  }
+
+  .mat-radio-group {
+    .radio-button {
+      .mat-radio-label {
+        display: flex;
+        flex-direction: row-reverse;
+        justify-content: space-between;
+        .mat-radio-label-content {
+          padding-left: 0;
+        }
+      }
+    }
+  }
+  .mat-checkbox-layout {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: space-between;
+    padding: 8px 0;
+  }
+  .mat-checkbox-inner-container {
+    margin: 0;
+  }
+
+  .action-button {
+    width: 30px;
+    height: 30px;
+    line-height: 30px;
+    background-color: #9b6f4c;
+    color: #fff;
+    margin: 10px;
+    &[disabled] {
+      background-color: #acacb1;
+    }
+  }
+  .products-price {
+    margin-top: 10px;
+  }
+}
+
+.mat-card {
+  padding: 16px 0;
+}
+
+.cdk-overlay-pane {
+  overflow: auto;
+}
+
+mat-radio-button, mat-checkbox {
+  width: 100%;
+  padding: 8px 0;
+}
+
+.flex-row {
+  display: flex;
+  flex-direction: row;
+}
+
+.justify-between {
+  justify-content: space-between;
+}

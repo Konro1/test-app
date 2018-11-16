@@ -1,0 +1,70 @@
+<mat-card class="card-container">
+    <img mat-card-image src="{{product.images.thumbnail}}" alt="">
+    <button class="back-button" mat-icon-button (click)="onClose()">
+        <mat-icon aria-label="Back">arrow_back</mat-icon>
+    </button>
+
+    <mat-card-header>
+        <mat-card-title>{{product.name}}</mat-card-title>
+        <mat-card-subtitle>{{product.description}}</mat-card-subtitle>
+    </mat-card-header>
+
+    <mat-divider></mat-divider>
+
+    <div class="flex-row justify-between">
+        <div class="products-price">${{product.price * productsCount}}</div>
+        <div class="actions">
+            <button mat-icon-button (click)="decrementCount()" class="action-button action-button-decrement"
+                    [disabled]="productsCount === 1">
+                <mat-icon aria-label="remove">remove</mat-icon>
+            </button>
+            <span class="item-count">{{productsCount}}</span>
+            <button mat-icon-button (click)="incrementCount()" class="action-button">
+                <mat-icon aria-label="add">add</mat-icon>
+            </button>
+        </div>
+    </div>
+
+    <div *ngFor="let extra of product.extras">
+        <div class="option-heading">
+            <h3>{{extra.name}} <span *ngIf="extra.min > 0">(REQUIRED)</span></h3>
+            <button *ngIf="extra.min === 0 && extra.max === 1" class="mat-button reset-button" (click)="reset(extra)">
+                reset
+            </button>
+        </div>
+        <p class="option-sub-heading" *ngIf="extra.min > 0">Please select {{extra.min}} item</p>
+        <mat-radio-group *ngIf="extra.max === 1" [(ngModel)]="extraGroups[extra.id]">
+            <div *ngFor="let item of extra.items">
+                <mat-radio-button class="radio-button"
+                                  (change)="toggleOption(item)"
+                                  [value]="item">
+                    {{item.name}} <span class="price-tag" *ngIf="item.price > 0">($ {{item.price}})</span>
+                </mat-radio-button>
+                <mat-divider></mat-divider>
+            </div>
+        </mat-radio-group>
+
+        <div *ngIf="extra.max > 1">
+            <div *ngFor="let item of extra.items">
+                <mat-checkbox
+                        [value]="item"
+                        (change)="toggleMultipleOptions(item, $event)">
+                    {{item.name}}
+                    <span class="price-tag" *ngIf="item.price > 0">($ {{item.price}})</span>
+                </mat-checkbox>
+                <mat-error *ngIf="extra.min > 0">
+                    You must choose one option
+                </mat-error>
+                <mat-divider></mat-divider>
+            </div>
+        </div>
+    </div>
+
+    <mat-card-actions mat-dialog-actions>
+        <button class="primary-button mat-button" mat-button (click)="onSubmit()" [disabled]="!isValid">
+            <mat-icon aria-label="Back">shopping_cart</mat-icon>
+            <span>Add {{productsCount}} to cart</span>
+            <span class="price">$ {{totalPrice}}</span>
+        </button>
+    </mat-card-actions>
+</mat-card>
